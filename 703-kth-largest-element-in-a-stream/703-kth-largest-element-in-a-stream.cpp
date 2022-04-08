@@ -1,3 +1,5 @@
+//  Time Complexity: O(N⋅log(k)+M⋅log(k))
+//  Space Complexity: O(k)
 class KthLargest {
     priority_queue<int, vector<int>, greater<int>> elements;
     int K;
