@@ -1,0 +1,3 @@
+[ Describe the previous term!](https://oeis.org/A006751)
+1, 11, 21, 1211, 111221, 312211, 12112221, 1112213211, ...
+Just Count and Say 111221 = (111)31(22)21(1)11
