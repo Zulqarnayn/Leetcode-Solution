@@ -4,6 +4,23 @@ public:
         // Full descriptions are given below
         // catch: keep an eye on k. if it is greater total size take reminder
         
+        //v2:
+        int row = grid.size(), col = grid[0].size();
+        vector<vector<int>> resultArray(row, vector<int>(col));
+        
+        for(int idx = 0; idx < row; idx++) {
+            for(int idy = 0; idy < col; idy++) {
+                //flatten 
+                int newIndexInOneDArray = (idx * col + idy) + k;
+                int i = (newIndexInOneDArray / col) % row;
+                int j = newIndexInOneDArray % col;
+                
+                resultArray[i][j] = grid[idx][idy];
+            }
+        }
+        
+        return resultArray;
+        /*v1:
         //n = row count, m = column count
         
         //0(n * m) memory
