@@ -24,20 +24,18 @@ public:
             int size = q.size();
             for(int idx = 0; idx < size; idx++) {
                 TreeNode* top = q.front(); q.pop();
-                 // cout << "top " << top->val << endl;
+                
                 if(top->right) {
                     q.push(top->right);
-                    // cout << "L " << top->right->val << endl;
                 }
                 if(top->left) {
                     q.push(top->left);
-                    cout << top->left->val << endl;
                 }
             }
+            
             if(!q.empty()) {
                 result.push_back(q.front()->val);
             }
-            level++;
         }
         
         return result;
