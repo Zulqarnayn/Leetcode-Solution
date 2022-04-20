@@ -10,9 +10,18 @@
  * };
  */
 class BSTIterator {
-    queue<int> sortedQueue;
+    //queue<int> sortedQueue;
+    
+    stack<TreeNode*> currStack;
 public:
     BSTIterator(TreeNode* root) {
+        // TC: O(1) , SC: O(H) 
+        // we just iterate to current height H, not whole tree initially
+        updateStack(root);
+        
+        /*
+        //This approach is takes O(1) time and O(N) memory
+        
         TreeNode* curr = root;
         stack<TreeNode*> nodes;
         
@@ -28,16 +37,32 @@ public:
             
             curr = curr->right;
         }
+        */
+    }
+    
+    void updateStack(TreeNode* node) {
+        while(node != nullptr) {
+            currStack.push(node);
+            node = node->left;
+        }
     }
     
     int next() {
+        TreeNode* top = currStack.top();
+        currStack.pop();
+        updateStack(top->right);
+        return top->val;
+        
+        /*
         int res = sortedQueue.front();
         sortedQueue.pop();
         return res;
+        */
     }
     
     bool hasNext() {
-        return !sortedQueue.empty();
+        return !currStack.empty();
+        // return !sortedQueue.empty();
     }
 };
 
