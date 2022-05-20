@@ -1,3 +1,11 @@
+/*
+Time Complexity - O(n*m)
+Space Complexity - O(1)
+
+
+Keep in mind:
+ - first and last cell can have obstacle
+*/
 class Solution {
 public:
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
