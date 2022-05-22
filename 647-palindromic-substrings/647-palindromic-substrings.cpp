@@ -42,9 +42,19 @@ public:
         dp.resize(sz, vector<int>(sz, -1));
         
         int cnt = 0;
-        for(int i = 0; i < sz; i++) {
+        for(int i = sz - 1; i >= 0; i--) {
             for(int j = i; j < sz; j++) {
-                cnt += memoization(s, i, j);
+                // memoization technique
+                // cnt += memoization(s, i, j);
+                if(i == j) {
+                    dp[i][j] = 1;
+                } else if(i + 1 == j) {
+                    dp[i][j] = s[i] == s[j] ? 1 : 0;
+                } else {
+                    dp[i][j] = s[i] == s[j] ? dp[i+1][j-1] : 0;
+                }
+                
+                cnt += dp[i][j];
             }
         }
         
