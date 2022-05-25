@@ -1,6 +1,10 @@
 class Solution {
 public:
     string removeOuterParentheses(string s) {
+        /*
+        // First Approach
+        // Time Complexity - O(N)
+        // Space Complexity - O(N)
         stack<pair<char, int>> parenthesesStack;
         
         for(int idx = 0; idx < s.size(); idx++) {
@@ -19,6 +23,28 @@ public:
         string result = "";
         for(auto ch: s) {
             if(ch != '*') result += ch;
+        }
+        
+        return result;
+        */
+        
+        /*
+        Second Approach
+        */
+        
+        string result;
+        int count = 0;
+        
+        for(auto c: s) {
+            if(c == '(') {
+                if(count++) {
+                    result += "(";
+                }
+            } else {
+                if(--count) {
+                    result += ")";
+                }
+            }
         }
         
         return result;
