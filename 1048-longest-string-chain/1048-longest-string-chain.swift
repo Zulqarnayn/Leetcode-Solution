@@ -18,7 +18,6 @@ class Solution {
                 } else {
                     wordMap[word] = max(wordMap[word] ?? 1, 1);
                 }
-                print(word, substr, wordMap[word], separator: " ")
             }
             result = max(result, wordMap[word] ?? 1)
         }
