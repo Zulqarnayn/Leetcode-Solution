@@ -11,20 +11,26 @@
  */
 class Solution {
 public:
-    TreeNode* createBST(vector<int>& nums, int start, int end) {
-        if(start > end) return nullptr;
+    // Mistakes I made:
+    // I returned the number where start == end
+    // also when I create tree element from root
+    // i missed the right condition to mid, instead of mid + 1
+    TreeNode* createBST(vector<int>& nums, int left, int right) {
+        if(left > right) return nullptr;
         
-        int mid = (end + start) / 2;
+        int mid = (right + left) / 2;
         
-        TreeNode* root = new TreeNode(nums[mid]);
+        TreeNode* result = new TreeNode(nums[mid]);
         
-        root->left = createBST(nums, start, mid - 1);
-        root->right = createBST(nums, mid + 1, end);
+        result->left = createBST(nums, left, mid - 1);
+        result->right = createBST(nums, mid + 1, right);
         
-        return root;
+        return result;
     }
     
     TreeNode* sortedArrayToBST(vector<int>& nums) {
+        if(nums.size() == 0) return nullptr;
+        
         return createBST(nums, 0, nums.size() - 1);
     }
 };
