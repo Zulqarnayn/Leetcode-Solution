@@ -25,25 +25,26 @@ public:
     }
     
     bool isPalindrome(ListNode* head) {
-        if(head == nullptr || head->next == nullptr) return true;
+        if(!head || !head->next) return true;
         
-        ListNode* slow = head, *fast = slow->next;
+        ListNode* slow = head, *fast = head->next;
         
         while(fast != nullptr) {
             slow = slow->next;
             fast = fast->next;
+            
             if(fast) fast = fast->next;
         }
         
-        fast = reverseLinkedList(slow);
+        slow = reverseLinkedList(slow);
+        fast = head;
         
-        while(fast != nullptr && head != nullptr) {
-            if(fast->val != head->val) return false;
+        while(slow != nullptr) {
+            if(slow->val != fast->val) return false;
+            slow = slow->next;
             fast = fast->next;
-            head = head->next;
         }
         
         return true;
-        
     }
 };
